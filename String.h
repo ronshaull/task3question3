@@ -1,10 +1,12 @@
 #pragma once
 class String
 {
+	int len;
+	char* array;
 public:
 	
-	int len; // cache length
-	char* array;
+	//int len; // cache length
+	//char* array;
 	String();
 	String(char*);
 	String(const String&);
