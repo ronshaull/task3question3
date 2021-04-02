@@ -14,9 +14,9 @@ int main()
 	cin >> index;
 	if (a < b)
 		cout << "a<b"<<endl;
-	if (a == b)
+	else if (a == b)
 		cout << "a=b" << endl;
-	if (a > b)
+	else if (a > b)
 		cout << "a>b" << endl;
 	String c=b.insert(index,a.array);
 	c.print();	
