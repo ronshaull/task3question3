@@ -2,6 +2,7 @@
 #include <iostream>
 #include "String.h"
 #include<cstring>
+#include<cstdlib>
 using namespace std;
 
 String::String()
@@ -13,7 +14,7 @@ String::String()
 String::String(char* str)
 {
 	len = strlen(str);
-	array = new char[len];
+	array = new char[len+1];
 	strcpy(array, str);
 }
 
@@ -25,7 +26,9 @@ String::String(const String& str) : String(str.array)
 
 String::~String()
 {
-	delete[] array;
+	if(array)
+		delete[] array;
+	array = NULL;
 }
 
 char& String::at(int index)
@@ -33,21 +36,23 @@ char& String::at(int index)
 	if (index < 0 || index > len) // throw exception
 	{
 		cout << "ERROR" << endl;
+		exit(-1);	// You don't want to return the next line;
 	}
 	return array[index];
 }
 
 char& String::operator[](int index) {
-	if (index < 0 || index > len) // throw exception
+	if (index < 0 || index >= len) // throw exception
 	{
 		cout << "ERROR" << endl;
+		exit(-1);
 	}
 	return array[index];
 }
 
 bool String::operator==(const String& str) const
 {
-	return strcmp(array, str.array) == 0;
+	return (strcmp(array, str.array) == 0);
 }
 
 String String::insert(int index, const char* str)
@@ -229,5 +234,6 @@ bool String::operator!=(const String a)
 }
 void String::print()
 {
-	cout << array;
+	if(array)
+		cout << array << endl;
 }
