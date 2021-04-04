@@ -18,9 +18,10 @@ String::String(char* str)
 	strcpy(array, str);
 }
 
-String::String(const String& str) : String(str.array)
+String::String(const String& str)
 {
 	len = str.len;
+	array = new char[len+1];
 	strcpy(array, str.array);
 }
 
